@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FH Tuner</title>
+  </head>
+  <body>
+    
+    <label for="mass">Vehicle weight (in Pounds)</label>
+    <input type="number" id="mass" value="3000" min="100">
+    <label for="dist">Weight distribution</label>
+    <input type="number" id="dist" value="50" min="10" max="90">
+    <p id="front">680.39</p>
+    <p id="rear">680.39</p>
+    <label for="fronthz">Front Frequency:</label>
+    <input type="number" id="fronthz" value="2.00" min="1.00" max="4.00" step="0.05">
+    <label for="rearhz">Rear Frequency:</label>
+    <input type="number" id="rearhz" value="2.00" min="1.00" max="4.00" step="0.05">
+    <p id="frontspring">613.5</p>
+    <p id="rearspring">613.5</p> 
+    <p id="frontbump">5.4</p>
+    <p id="rearbump">5.4</p>
+    <p id="frontrebound">12</p>
+    <p id="rearrebound">12</p>
+    <label for="arbcoef">ARB Stiffness factor:</label>
+    <input type="number" id="arbcoef" value="0.72" min="0.45" max="0.8" step="0.01">
+    <p id="arbfront">26.78</p>
+    <p id="arbrear">26.78</p>
+    <script src="./JS/main.js"></script>
+  </body>
+</html>
