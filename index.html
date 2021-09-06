@@ -1,30 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html class="has-background-dark has-text-light">
   <head>
+    <link rel="stylesheet" href="./dist/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FH Tuner</title>
   </head>
-  <body>
-    
-    <label for="mass">Vehicle weight (in Pounds)</label>
-    <input type="number" id="mass" value="3000" min="100">
-    <label for="dist">Weight distribution</label>
-    <input type="number" id="dist" value="50" min="10" max="90">
-    <p id="front">680.39</p>
-    <p id="rear">680.39</p>
-    <label for="fronthz">Front Frequency:</label>
-    <input type="number" id="fronthz" value="2.00" min="1.00" max="4.00" step="0.05">
-    <label for="rearhz">Rear Frequency:</label>
-    <input type="number" id="rearhz" value="2.00" min="1.00" max="4.00" step="0.05">
-    <p id="frontspring">613.5</p>
-    <p id="rearspring">613.5</p> 
-    <p id="frontbump">5.4</p>
-    <p id="rearbump">5.4</p>
-    <p id="frontrebound">12</p>
-    <p id="rearrebound">12</p>
-    <label for="arbcoef">ARB Stiffness factor:</label>
-    <input type="number" id="arbcoef" value="0.72" min="0.45" max="0.8" step="0.01">
-    <p id="arbfront">26.78</p>
-    <p id="arbrear">26.78</p>
-    <script src="./JS/main.js"></script>
+  <body class="has-background-dark has-text-light">
+    <nav class="navbar has-background-danger" role="navigation">
+
+    </nav>
+    <div class="container">
+      
+      <section class="section">
+        <div class="level">
+          <div class="level-left">
+            <label class="level-item" for="mass">Vehicle weight (in Pounds)</label>
+            <div class="control level-item">
+              <input class="input is-normal" type="number" id="mass" value="3000" min="100">
+            </div>
+            <label class="level-item" for="dist">@</label>
+            <div class="control level-item">
+              <input class="input is-normal" type="number" id="dist" value="50" min="10" max="90">
+            </div>
+            <p class="level-item">%</p>
+          </div>
+          <div class="level-right">
+            <div class="content">
+              <p id="front">1500</p>
+              <p id="rear">1500</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="section">
+        <h3 class="title is-3 has-text-light is-flex is-justify-content-center">Spring Rates</h3>
+        <div class="level">
+          <div class="level-left">
+            <label class="level-item" for="fronthz">Front Frequency: </label>
+            <div class="control level-item">
+              <input class="input" type="number" id="fronthz" value="2" min="1.00" max="4.00" step="0.05">
+            </div>
+            <p>Hz</p>
+          </div>
+          <div class="level-right">
+            <p class="level-item" id="frontspring">613.5</p><p class="level-time"> lbs/in</p>
+          </div>
+        </div>
+        <div class="level">
+          <div class="level-left">
+            <label class="level-item" for="rearhz">Rear Frequency: </label>
+            <div class="control level-item">
+              <input class="input" type="number" id="rearhz" value="2" min="1.00" max="4.00" step="0.05">
+            </div>
+            <p>Hz</p>
+          </div>
+          <div class="level-right">
+            <p class="level-item" id="rearspring">613.5</p><p class="level-item"> lbs/in</p>
+          </div>
+        </div>
+      </section>
+      
+      <section class="section">
+        <h3 class="title is-3 has-text-light is-flex is-justify-content-center">Dampers</h3>
+        <div class="columns">
+          <div class="column is-half"></div>
+          <div class="column is-one-quarter is-flex is-justify-content-center"><h5 class="title is-5 has-text-light">Bump</h5></div>
+          <div class="column is-one-quarter is-flex is-justify-content-center"><h5 class="title is-5 has-text-light">Rebound</h5></div>
+        </div>
+        <div class="columns is-align-items-center">
+          <div class="column is-one-quarter is-flex is-justify-content-flex-start level-left">
+            <label class="level-item" for="frontcrit">Critical Damping: </label>
+            <div class="control level-item">
+              <input class="input" type="number" id="frontcrit" value="0.9" min="0.65" max="1.00" step="0.01">
+            </div>
+          </div>
+          <div class="column is-one-quarter is-flex is-justify-content-flex-end"><h5 class="title is-5 has-text-light">Front</h5></div>
+          <div class="column is-one-quarter is-flex is-justify-content-center"><p id="frontbump">4.9</p></div>
+          <div class="column is-one-quarter is-flex is-justify-content-center"><p id="frontrebound">10.9</p></div>
+        </div>
+        <div class="columns is-align-items-center">
+          <div class="column is-one-quarter is-flex is-justify-content-flex-start level-left">
+            <label class="level-item" for="rearcrit">Critical Damping: </label>
+            <div class="control level-item">
+              <input class="input" type="number" id="rearcrit" value="0.9" min="0.65" max="1.00" step="0.01">
+            </div>
+          </div>
+          <div class="column is-one-quarter is-flex is-justify-content-flex-end"><h5 class="title is-5 has-text-light">Rear</h5></div>
+          <div class="column is-one-quarter is-flex is-justify-content-center"><p id="rearbump">4.9</p></div>
+          <div class="column is-one-quarter is-flex is-justify-content-center"><p id="rearrebound">10.9</p></div>
+        </div>
+      </section>
+      
+      <section class="section">
+        <h3 class="title is-3 has-text-light is-flex is-justify-content-center">Anti-Roll Bars</h3>
+        <div class="level">
+          <div class="level-left">
+            <label class="level-item" for="arbcoef">ARB Stiffness factor: </label>
+            <div class="control level-item">
+              <input class="input" type="number" id="arbcoef" value="0.72" min="0.45" max="0.8" step="0.01">
+            </div>
+          </div>
+        </div>
+        <div class="level">
+          <div class="columns level-item">
+            <div class="column is-one-third is-flex is-justify-content-center"><h5 class="title is-5 has-text-light">Front</h5></div>
+            <div class="column is-one-third is-flex is-justify-content-center"><progress class="progress is-small is-danger" id="arbfrontbar" value="26.78" max="65"></progress></div>
+            <div class="column is-one-third is-flex is-justify-content-center"><p id="arbfront">26.78</p></div>
+          </div>
+        </div>
+        <div class="level">
+          <div class="columns level-item">
+            <div class="column is-one-third is-flex is-justify-content-center"><h5 class="title is-5 has-text-light">Rear</h5></div>
+            <div class="column is-one-third is-flex is-justify-content-center"><progress class="progress is-small is-danger" id="arbrearbar" value="26.78" max="65"></progress></div>
+            <div class="column is-one-third is-flex is-justify-content-center"><p id="arbrear">26.78</p></div>
+          </div>
+        </div>
+      </section>
+      
+      
+    </div>
+    <script src="./dist/js/bundle.js"></script>
   </body>
 </html>

@@ -1,3 +1,4 @@
+import "./styles.scss"
 import { Bump } from "./Bump";
 import { SpringRate } from "./SpringRate";
 import { Rebound } from "./Rebound";
@@ -51,8 +52,10 @@ function update(): void
     let frontSpringRate = SpringRate(front, fronthz)
     let rearSpringRate = SpringRate(rear, rearhz)
 
-    let frontBump = Bump(front, fronthz)
-    let rearBump = Bump(rear, rearhz)
+    let frontCrit = Number((document.getElementById('frontcrit') as HTMLInputElement).value)
+    let rearCrit = Number((document.getElementById('rearcrit') as HTMLInputElement).value)
+    let frontBump = Bump(front, fronthz, frontCrit)
+    let rearBump = Bump(rear, rearhz, rearCrit)
 
     let frontRebound = frontBump / 0.45
     let rearRebound = rearBump / 0.45
@@ -72,22 +75,26 @@ function update(): void
         arbfront = arbstiff - arbrear
     }
 
-    document.getElementById('front').innerHTML = front.toFixed(2);
-    document.getElementById('rear').innerHTML = rear.toFixed(2);
+    document.getElementById('front').innerHTML = (pounds * (dist/100)).toFixed(2);
+    document.getElementById('rear').innerHTML = (pounds - (pounds * (dist/100))).toFixed(2);
     document.getElementById('frontspring').innerHTML = frontSpringRate.toFixed(1)
     document.getElementById('rearspring').innerHTML = rearSpringRate.toFixed(1)
     document.getElementById('frontbump').innerHTML = frontBump.toFixed(1)
     document.getElementById('rearbump').innerHTML = rearBump.toFixed(1)
     document.getElementById('frontrebound').innerHTML = frontRebound.toFixed(1)
     document.getElementById('rearrebound').innerHTML = rearRebound.toFixed(1)
-    document.getElementById('arbfront').innerHTML = front.toFixed(2);
-    document.getElementById('arbrear').innerHTML = rear.toFixed(2);
+    document.getElementById('arbfront').innerHTML = arbfront.toFixed(2);
+    document.getElementById('arbrear').innerHTML = arbrear.toFixed(2);
+    (document.getElementById('arbfrontbar') as HTMLInputElement).value = arbfront.toFixed(2);
+    (document.getElementById('arbrearbar') as HTMLInputElement).value = arbrear.toFixed(2);
 }
 
 
 
-document.getElementById('mass')?.addEventListener("change", update)
-document.getElementById('dist')?.addEventListener("change", update)
-document.getElementById('fronthz')?.addEventListener("change", update)
-document.getElementById('rearhz')?.addEventListener("change", update)
-document.getElementById('arbcoef')?.addEventListener("change", update)
+document.getElementById('mass').addEventListener("change", update)
+document.getElementById('dist').addEventListener("change", update)
+document.getElementById('fronthz').addEventListener("change", update)
+document.getElementById('rearhz').addEventListener("change", update)
+document.getElementById('frontcrit').addEventListener("change", update)
+document.getElementById('rearcrit').addEventListener("change", update)
+document.getElementById('arbcoef').addEventListener("change", update)
