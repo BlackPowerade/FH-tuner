@@ -52,10 +52,10 @@ function update(): void
     let frontSpringRate = SpringRate(front, fronthz)
     let rearSpringRate = SpringRate(rear, rearhz)
 
-    let frontCrit = Number((document.getElementById('frontcrit') as HTMLInputElement).value)
-    let rearCrit = Number((document.getElementById('rearcrit') as HTMLInputElement).value)
-    let frontBump = Bump(front, fronthz, frontCrit)
-    let rearBump = Bump(rear, rearhz, rearCrit)
+    let frontRatio = Number((document.getElementById('frontratio') as HTMLInputElement).value)
+    let rearRatio = Number((document.getElementById('rearratio') as HTMLInputElement).value)
+    let frontBump = Bump(front, frontSpringRate, frontRatio)
+    let rearBump = Bump(rear, rearSpringRate, rearRatio)
 
     let frontRebound = frontBump / 0.45
     let rearRebound = rearBump / 0.45
@@ -95,6 +95,6 @@ document.getElementById('mass').addEventListener("change", update)
 document.getElementById('dist').addEventListener("change", update)
 document.getElementById('fronthz').addEventListener("change", update)
 document.getElementById('rearhz').addEventListener("change", update)
-document.getElementById('frontcrit').addEventListener("change", update)
-document.getElementById('rearcrit').addEventListener("change", update)
+document.getElementById('frontratio').addEventListener("change", update)
+document.getElementById('rearratio').addEventListener("change", update)
 document.getElementById('arbcoef').addEventListener("change", update)

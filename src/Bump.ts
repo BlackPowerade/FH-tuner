@@ -1,5 +1,8 @@
-export function Bump(weight: number, HZ: number, rate: number): number
+export function Bump(mass: number, springrate: number, critdamp: number): number
 {
-    let damp: number = ((2 * weight * HZ)/1000) * 2
-    return damp * rate
+    // Spring rate must be in N/m, weight in kg.
+    // critdamp defaults to 1, go higher for overdamping, lower for under damping.
+    springrate *= 0.112984829027923 // Convert ft/lb / inch to N/m / s
+    let damp = critdamp * (2 * (Math.sqrt((mass * springrate))))
+    return damp / 100 
 }
