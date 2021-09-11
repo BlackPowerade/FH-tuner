@@ -27,8 +27,8 @@
           </div>
           <div class="level-right">
             <div class="content">
-              <p id="front">1500</p>
-              <p id="rear">1500</p>
+              <p id="front">1500.00</p>
+              <p id="rear">1500.00</p>
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@
           <div class="level-left">
             <label class="level-item" for="fronthz">Front Frequency: </label>
             <div class="control level-item">
-              <input class="input" type="number" id="fronthz" value="2" min="1.00" max="4.00" step="0.05">
+              <input class="input" type="number" id="fronthz" value="2" min="1.00" max="4.00" step="0.01">
             </div>
             <p>Hz</p>
           </div>
@@ -52,7 +52,7 @@
           <div class="level-left">
             <label class="level-item" for="rearhz">Rear Frequency: </label>
             <div class="control level-item">
-              <input class="input" type="number" id="rearhz" value="2" min="1.00" max="4.00" step="0.05">
+              <input class="input" type="number" id="rearhz" value="2" min="1.00" max="4.00" step="0.01">
             </div>
             <p>Hz</p>
           </div>
@@ -71,25 +71,25 @@
         </div>
         <div class="columns is-align-items-center">
           <div class="column is-one-quarter is-flex is-justify-content-flex-start level-left">
-            <label class="level-item" for="frontcrit">Critical Damping: </label>
+            <label class="level-item" for="frontcrit">Damping Ratio: </label>
             <div class="control level-item">
-              <input class="input" type="number" id="frontcrit" value="0.9" min="0.65" max="1.00" step="0.01">
+              <input class="input" type="number" id="frontratio" value="1.00" min="0.5" max="1.5" step="0.01">
             </div>
           </div>
           <div class="column is-one-quarter is-flex is-justify-content-flex-end"><h5 class="title is-5 has-text-light">Front</h5></div>
-          <div class="column is-one-quarter is-flex is-justify-content-center"><p id="frontbump">4.9</p></div>
-          <div class="column is-one-quarter is-flex is-justify-content-center"><p id="frontrebound">10.9</p></div>
+          <div class="column is-one-quarter is-flex is-justify-content-center"><p id="frontbump">4.3</p></div>
+          <div class="column is-one-quarter is-flex is-justify-content-center"><p id="frontrebound">9.7</p></div>
         </div>
         <div class="columns is-align-items-center">
           <div class="column is-one-quarter is-flex is-justify-content-flex-start level-left">
-            <label class="level-item" for="rearcrit">Critical Damping: </label>
+            <label class="level-item" for="rearcrit">Damping Ratio: </label>
             <div class="control level-item">
-              <input class="input" type="number" id="rearcrit" value="0.9" min="0.65" max="1.00" step="0.01">
+              <input class="input" type="number" id="rearratio" value="1.00" min="0.5" max="1.5" step="0.01">
             </div>
           </div>
           <div class="column is-one-quarter is-flex is-justify-content-flex-end"><h5 class="title is-5 has-text-light">Rear</h5></div>
-          <div class="column is-one-quarter is-flex is-justify-content-center"><p id="rearbump">4.9</p></div>
-          <div class="column is-one-quarter is-flex is-justify-content-center"><p id="rearrebound">10.9</p></div>
+          <div class="column is-one-quarter is-flex is-justify-content-center"><p id="rearbump">4.3</p></div>
+          <div class="column is-one-quarter is-flex is-justify-content-center"><p id="rearrebound">9.7</p></div>
         </div>
       </section>
       
