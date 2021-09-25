@@ -46,22 +46,24 @@ function update(): void
     let front: number = mass * dist/100
     let rear: number = mass - front 
     
-    let fronthz: number = Number((document.getElementById('fronthz') as HTMLInputElement).value)
-    let rearhz: number = Number((document.getElementById('rearhz') as HTMLInputElement).value)
+    let frontHz: number = Number((document.getElementById('frontHz') as HTMLInputElement).value)
+    let rearHz: number = Number((document.getElementById('rearHz') as HTMLInputElement).value)
 
-    let frontSpringRate = SpringRate(front, fronthz)
-    let rearSpringRate = SpringRate(rear, rearhz)
+    let frontSpringRate = SpringRate(front, frontHz)
+    let rearSpringRate = SpringRate(rear, rearHz)
 
-    let frontRatio = Number((document.getElementById('frontratio') as HTMLInputElement).value)
-    let rearRatio = Number((document.getElementById('rearratio') as HTMLInputElement).value)
-    let frontBump = Bump(front, frontSpringRate, frontRatio)
-    let rearBump = Bump(rear, rearSpringRate, rearRatio)
+    let frontDamping = Number((document.getElementById('frontDampingRatio') as HTMLInputElement).value)
+    let rearDamping = Number((document.getElementById('rearDampingRatio') as HTMLInputElement).value)
+    let frontBump = Bump(front, frontSpringRate, frontDamping)
+    let rearBump = Bump(rear, rearSpringRate, rearDamping)
 
-    let frontRebound = frontBump / 0.45
-    let rearRebound = rearBump / 0.45
+    let frontReboundRatio = Number((document.getElementById('frontReboundRatio') as HTMLInputElement).value)
+    let rearReboundRatio = Number((document.getElementById('rearReboundRatio') as HTMLInputElement).value)
+    let frontRebound = frontBump / frontReboundRatio
+    let rearRebound = rearBump / rearReboundRatio
 
-    let arbcoef = Number((document.getElementById('arbcoef') as HTMLInputElement).value)
-    let arbstiff = ((pounds/2) / (200 - 200 * arbcoef)) * 2
+    let arbCoef = Number((document.getElementById('arbCoef') as HTMLInputElement).value)
+    let arbstiff = ((pounds/2) / (200 - 200 * arbCoef)) * 2
     let arbfront = 0
     let arbrear = 0
     if (dist > 50) 
@@ -77,14 +79,14 @@ function update(): void
 
     document.getElementById('front').innerHTML = (pounds * (dist/100)).toFixed(2);
     document.getElementById('rear').innerHTML = (pounds - (pounds * (dist/100))).toFixed(2);
-    document.getElementById('frontspring').innerHTML = frontSpringRate.toFixed(1)
-    document.getElementById('rearspring').innerHTML = rearSpringRate.toFixed(1)
-    document.getElementById('frontbump').innerHTML = frontBump.toFixed(1)
-    document.getElementById('rearbump').innerHTML = rearBump.toFixed(1)
-    document.getElementById('frontrebound').innerHTML = frontRebound.toFixed(1)
-    document.getElementById('rearrebound').innerHTML = rearRebound.toFixed(1)
-    document.getElementById('arbfront').innerHTML = arbfront.toFixed(2);
-    document.getElementById('arbrear').innerHTML = arbrear.toFixed(2);
+    document.getElementById('frontSpring').innerHTML = frontSpringRate.toFixed(1)
+    document.getElementById('rearSpring').innerHTML = rearSpringRate.toFixed(1)
+    document.getElementById('frontBump').innerHTML = frontBump.toFixed(1)
+    document.getElementById('rearBump').innerHTML = rearBump.toFixed(1)
+    document.getElementById('frontRebound').innerHTML = frontRebound.toFixed(1)
+    document.getElementById('rearRebound').innerHTML = rearRebound.toFixed(1)
+    document.getElementById('arbFront').innerHTML = arbfront.toFixed(2);
+    document.getElementById('arbRear').innerHTML = arbrear.toFixed(2);
     (document.getElementById('arbfrontbar') as HTMLInputElement).value = arbfront.toFixed(2);
     (document.getElementById('arbrearbar') as HTMLInputElement).value = arbrear.toFixed(2);
 }
@@ -93,8 +95,10 @@ function update(): void
 
 document.getElementById('mass').addEventListener("change", update)
 document.getElementById('dist').addEventListener("change", update)
-document.getElementById('fronthz').addEventListener("change", update)
-document.getElementById('rearhz').addEventListener("change", update)
-document.getElementById('frontratio').addEventListener("change", update)
-document.getElementById('rearratio').addEventListener("change", update)
-document.getElementById('arbcoef').addEventListener("change", update)
+document.getElementById('frontHz').addEventListener("change", update)
+document.getElementById('rearHz').addEventListener("change", update)
+document.getElementById('frontDampingRatio').addEventListener("change", update)
+document.getElementById('rearDampingRatio').addEventListener("change", update)
+document.getElementById('frontReboundRatio').addEventListener("change", update)
+document.getElementById('rearReboundRatio').addEventListener("change", update)
+document.getElementById('arbCoef').addEventListener("change", update)
