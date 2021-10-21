@@ -1,7 +1,6 @@
 import "./styles.scss"
-import { Bump } from "./Bump";
+import { Dampers, Damper } from "./Dampers";
 import { SpringRate } from "./SpringRate";
-import { Rebound } from "./Rebound";
 
 // class vehicle
 // {
@@ -49,18 +48,13 @@ function update(): void
     let frontHz: number = Number((document.getElementById('frontHz') as HTMLInputElement).value)
     let rearHz: number = Number((document.getElementById('rearHz') as HTMLInputElement).value)
 
-    let frontSpringRate = SpringRate(front, frontHz)
-    let rearSpringRate = SpringRate(rear, rearHz)
 
     let frontDamping = Number((document.getElementById('frontDampingRatio') as HTMLInputElement).value)
     let rearDamping = Number((document.getElementById('rearDampingRatio') as HTMLInputElement).value)
-    let frontBump = Bump(front, frontSpringRate, frontDamping)
-    let rearBump = Bump(rear, rearSpringRate, rearDamping)
-
     let frontReboundRatio = Number((document.getElementById('frontReboundRatio') as HTMLInputElement).value)
     let rearReboundRatio = Number((document.getElementById('rearReboundRatio') as HTMLInputElement).value)
-    let frontRebound = frontBump / frontReboundRatio
-    let rearRebound = rearBump / rearReboundRatio
+    let frontDampers: Damper = Dampers(front, frontHz, frontDamping, frontReboundRatio)
+    let rearDampers: Damper = Dampers(rear, rearHz, rearDamping, rearReboundRatio)
 
     let arbCoef = Number((document.getElementById('arbCoef') as HTMLInputElement).value)
     let arbstiff = ((pounds/2) / (200 - 200 * arbCoef)) * 2
@@ -79,12 +73,12 @@ function update(): void
 
     document.getElementById('front').innerHTML = (pounds * (dist/100)).toFixed(2);
     document.getElementById('rear').innerHTML = (pounds - (pounds * (dist/100))).toFixed(2);
-    document.getElementById('frontSpring').innerHTML = frontSpringRate.toFixed(1)
-    document.getElementById('rearSpring').innerHTML = rearSpringRate.toFixed(1)
-    document.getElementById('frontBump').innerHTML = frontBump.toFixed(1)
-    document.getElementById('rearBump').innerHTML = rearBump.toFixed(1)
-    document.getElementById('frontRebound').innerHTML = frontRebound.toFixed(1)
-    document.getElementById('rearRebound').innerHTML = rearRebound.toFixed(1)
+    document.getElementById('frontSpring').innerHTML = SpringRate(front, frontHz).toFixed(1);
+    document.getElementById('rearSpring').innerHTML = SpringRate(rear, rearHz).toFixed(1);
+    document.getElementById('frontBump').innerHTML = frontDampers.bump.toFixed(1);
+    document.getElementById('rearBump').innerHTML = rearDampers.bump.toFixed(1);
+    document.getElementById('frontRebound').innerHTML = frontDampers.rebound.toFixed(1);
+    document.getElementById('rearRebound').innerHTML = rearDampers.rebound.toFixed(1);
     document.getElementById('arbFront').innerHTML = arbfront.toFixed(2);
     document.getElementById('arbRear').innerHTML = arbrear.toFixed(2);
     (document.getElementById('arbfrontbar') as HTMLInputElement).value = arbfront.toFixed(2);
