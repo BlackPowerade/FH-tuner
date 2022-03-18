@@ -4,5 +4,5 @@ export function SpringRate(weight: number, HZ: number): number
     rate *= (HZ**2)
     rate *= weight
     rate *= 0.0057101471627692 // Convert to N/m to lbs/in
-    return rate
+    return rate/2
 }
